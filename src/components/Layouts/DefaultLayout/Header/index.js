@@ -92,6 +92,7 @@ function Header({settoggleFunctionLoginLogout}){
         //có thể chatgpt để hiểu đoạn code bên dưới
         request.get(`/api/infoCart`, {params: {matk : localStorage.getItem('auth_matk')}})
         .then(res => {
+            
             setInfoCarts([...res.data.data].reverse()); 
             console.log(res)
         })

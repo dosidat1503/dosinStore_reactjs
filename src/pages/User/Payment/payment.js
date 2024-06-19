@@ -256,7 +256,7 @@ function Payment(){
     }
     const handleGetDistrict = async (ID_Province) => {
         console.log(ID_Province, 'ạcbnj23')
-        axios.get(`${URL_APIAdsress}/district/${(ID_Province)}`)
+        axios.get(`${URL_APIAdsress}district/${(ID_Province)}`)
         .then(res => {
             console.log(res.data.results, 'sdksk');
             setDataAPIAddress({
