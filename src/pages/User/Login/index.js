@@ -16,7 +16,7 @@ function Login(){
     // 3.nếu đăng ký thì xử lý lưu thông tin tài khoản, đăng nhập thì kiểm tra xem trùng khớp với db không rồi login
 
     useEffect(() => {
-      document.title = "DosiIn | Đăng nhập"
+      document.title = "Dosin | Đăng nhập"
     }, []);
     // đoạn code này để chuyển slide sign in or sign up
     //nếu isSignUpActive = true thì có nghĩa là người dùng đã chọn đăng ký
@@ -40,10 +40,10 @@ function Login(){
 
 
     const click_signin = () => { 
-        setIsSignUpActive(false);
+      setIsSignUpActive(false);
     }
     const click_signup = () => {
-        setIsSignUpActive(true);
+      setIsSignUpActive(true);
     }
 
     const Navigate = useNavigate();
@@ -89,12 +89,10 @@ function Login(){
           console.log(res.data.status)
           if(res.data.status === 200){// nếu lưu thông tin thành công thì status trả về từ server là 200 
             console.log(res.data.email);
-            localStorage.setItem('auth_token', res.data.token);
-            localStorage.setItem('auth_email', res.data.email);
+            
             setIsNotifyOpenMailToVerify(true);
-
-            // swal("success", res.data.message, "success");
-            Navigate('/login');
+ 
+            window.location.reload();
           }
           else{
             
@@ -133,7 +131,7 @@ function Login(){
         email: loginInput.email_login,
         password: loginInput.password_login,
       }
-      console.log('loginSubmit')
+      console.log('loginSubmit', data_login)
 
       Request.get('/sanctum/csrf-cookie')
         .then(async () => {
@@ -449,22 +447,22 @@ function Login(){
                       </ul>
                   </div>
                   <div class="col-sm-3">
-                      <h3>Nội dung chính sách</h3>
-                      <ul class="footer__policy_ul">
-                          <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Những câu hỏi thường gặp</a></li>
-                          <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách thành viên</a></li>
-                          <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách thanh toán</a></li>
-                          <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách vận chuyển</a></li>
-                          <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách khiếu nại</a></li>
-                          <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách đổi trả</a></li>
-                          <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách bảo hành</a></li>
-                      </ul>
+                    <h3>Nội dung chính sách</h3>
+                    <ul class="footer__policy_ul">
+                        <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Những câu hỏi thường gặp</a></li>
+                        <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách thành viên</a></li>
+                        <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách thanh toán</a></li>
+                        <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách vận chuyển</a></li>
+                        <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách khiếu nại</a></li>
+                        <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách đổi trả</a></li>
+                        <li class="footer__policy_li"><a class="footer__policy_li_link" href="#">Chính sách bảo hành</a></li>
+                    </ul>
                   </div>
                   <div class="col-sm-3">
-                      <h3>Fanpage</h3>
-                      <a href="#"><i class="contact_info__icon fa-brands fa-facebook"></i></a>
-                      <a href="#"><i class="contact_info__icon fa-brands fa-square-instagram"></i></a>
-                      <a href="#"><i class="contact_info__icon fa-brands fa-linkedin"></i></a>                        
+                    <h3>Fanpage</h3>
+                    <a href="#"><i class="contact_info__icon fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="contact_info__icon fa-brands fa-square-instagram"></i></a>
+                    <a href="#"><i class="contact_info__icon fa-brands fa-linkedin"></i></a>                        
                   </div>
               </div> 
           </div>

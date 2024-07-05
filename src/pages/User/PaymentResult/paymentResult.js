@@ -49,7 +49,7 @@ function PaymentResult(){
     return ( 
         <div class="container">  
             <div className="row"> 
-                <h6>Số tiền thanh toán: {infoPaymentResult.vnp_Amount}</h6>
+                <h6>Số tiền thanh toán: {infoPaymentResult.vnp_Amount / 100}</h6>
                 <h6>Mã ngân hàng thanh toán: {infoPaymentResult.vnp_BankCode}</h6>
                 <h6>Mã giao dịch: {infoPaymentResult.vnp_BankTranNo}</h6>
                 <h6>Nội dung thanh toán: {infoPaymentResult.vnp_OrderInfo}</h6>

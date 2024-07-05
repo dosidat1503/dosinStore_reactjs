@@ -31,8 +31,7 @@ function ManageOrder(){
     const handlePrint_A4 = useReactToPrint({
         content: () => componentRef.current,
         documentTitle: 'emp-data',
-        onAfterPrint: () => {
-            
+        onAfterPrint: () => { 
             setInfoOrderDetail_many([])
             alert('Print success') 
         }
@@ -304,7 +303,7 @@ function ManageOrder(){
             try{ 
                 request.get(`/api/getInfoManageOrder`, {params: queryForGetInfoOrderForUsers}) 
                 .then(res=>{     
-                    console.log(res.data, 'okk') ;
+                    console.log(res.data, 'okk');
                     console.log(itemInOrderStatus_Array, '8shd8', ++i)
                     setOrderStatus(prevOrderStatus => { 
                         return {
@@ -493,6 +492,7 @@ function ManageOrder(){
                         data_sanPham_relative_CTDH: res.data.data_sanPham_relative_CTDH[index],
                     })
                     console.log('aksjdkkkjkj ', item, res.data.data_sanPham_relative_CTDH[index]);
+                    console.log(item[0], 'ácnsj')
                 }) 
         
                 setInfoOrderDetail_many(prevInfo => [...prevInfo, ...newInfoDetail_update]); 
@@ -507,6 +507,7 @@ function ManageOrder(){
         setPaginationNumberRunFirst(0); 
     }  
     useEffect(() => {   
+        console.log(infoOrderDetail_many, 'le33ength')
         if(infoOrderDetail_many.length > 0){ 
             handlePrint_A4()
         } 
@@ -699,95 +700,99 @@ function ManageOrder(){
     }
 
     const renderOrderDetail_many = () => {
-        return infoOrderDetail_many.map(item =>   (  
-                <div className="print-container"> 
-                    <h1>Đơn hàng {item.data_relative_Donhang.MADH}</h1> 
-                    <div className="div_thongTinGiaoHang">
-                        <h3 className="thongTinGiaoHang">Thông tin giao hàng</h3>   
-                        <table class="table">
-                            <thead>
-                                <tr>  
-                                    <th scope="col">Tên khách hàng</th>
-                                    <th scope="col">SĐT</th>
-                                    <th scope="col">Địa chỉ</th> 
-    
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider">
-                            <tr> 
-                                <td data-label="Order-code">{item.data_relative_Donhang.TEN !== null ? item.data_relative_Donhang.TEN : ''}</td>
-                                <td data-label="Name">{item.data_relative_Donhang.SDT}</td>
-                                <td data-label="Phone-number">
-                                    {item.data_relative_Donhang.DIACHI ? item.data_relative_Donhang.DIACHI + ', ' : ''}
-                                    {item.data_relative_Donhang.PHUONG_XA ? item.data_relative_Donhang.PHUONG_XA + ', ' : ''}
-                                    {item.data_relative_Donhang.QUAN_HUYEN ? item.data_relative_Donhang.QUAN_HUYEN + ', ' : ''}
-                                    {item.data_relative_Donhang.TINH_TP ? item.data_relative_Donhang.TINH_TP : ''}
-                                </td> 
-                            </tr> 
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="div_thongTinGiaoHang">
-                        <h3 className="thongTinGiaoHang">Thông tin Đơn hàng</h3>   
-                        <table class="table">
-                            <thead>
-                                <tr>  
-                                    <th scope="col">Mã đơn hàng</th>
-                                    <th scope="col">Ngày đặt hàng</th> 
-                                    <th scope="col">Tiền sản phẩm</th>
-                                    <th scope="col">Phí vận chuyển</th>
-                                    <th scope="col">Tổng tiền hoá đơn</th>
-                                    <th scope="col">Số tiền Voucher giảm</th> 
-    
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider">
-                            <tr> 
-                                <td data-label="Order-code">{item.data_relative_Donhang.MADH}</td>
-                                <td data-label="Name">{item.data_relative_Donhang.NGAYORDER}</td> 
-                                <td data-label="Phone-number">  {item.data_relative_Donhang.TONGTIEN_SP}   </td>
-                                <td data-label="Phone-number">  {item.data_relative_Donhang.PHIVANCHUYEN}   </td>
-                                <td data-label="Phone-number">  {item.data_relative_Donhang.TONGTIENDONHANG}   </td> 
-                                <td data-label="Phone-number">  {item.data_relative_Donhang.VOUCHERGIAM === 0 ? 0 : item.data_relative_Donhang.MAVOUCHER}   </td>
-                            </tr> 
-                            </tbody>
-                        </table>
-                        
-                    </div>
-                    <div className="div_thongTinGiaoHang">
-                        <h3 className="thongTinGiaoHang">Thông tin các sản phẩm</h3> 
-                        <table class="table">
-                            <thead>
-                                <tr>  
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Tên màu</th>
-                                    <th scope="col">Size</th>
-                                    <th scope="col">Giá bán</th>
-                                    <th scope="col" >Số lượng</th> 
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider">
-                                {
-                                    item.data_sanPham_relative_CTDH.map((item, index) =>  
-                                        <tr  className="" key={index}> 
-                                            <td data-label="Order-code">{item.TENSP}</td>
-                                            <td data-label="Name">{item.TENMAU}</td>
-                                            <td data-label="Phone-number"> {item.MASIZE} </td>
-                                            <td data-label="Phone-number">{item.GIABAN}  </td>
-                                            <td data-label="Phone-number">  {item.SOLUONG}   </td>  
-                                        </tr>  
-                                    ) 
-                                }
-                            </tbody>      
-                        </table>
-                    </div> 
-                    <div className="div_thongTinGiaoHang">
-                        <h3 className="thongTinGiaoHang">Ghi chú</h3> 
-                        <div>{item.data_relative_Donhang.GHICHU}</div>
-                    </div> 
-                </div>  
-            ) 
-        )
+        if(infoOrderDetail_many.length > 0){
+            console.log(infoOrderDetail_many, 'infoOcrderDetail_many')
+            return infoOrderDetail_many.map(item =>   (  
+                    item.data_relative_Donhang !== undefined && ( <div className="print-container"> 
+                        <h1>Đơn hàng {item.data_relative_Donhang.MADH}</h1> 
+                        <div className="div_thongTinGiaoHang">
+                            <h3 className="thongTinGiaoHang">Thông tin giao hàng</h3>   
+                            <table class="table">
+                                <thead>
+                                    <tr>  
+                                        <th scope="col">Tên khách hàng</th>
+                                        <th scope="col">SĐT</th>
+                                        <th scope="col">Địa chỉ</th> 
+        
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                <tr> 
+                                    <td data-label="Order-code">{item.data_relative_Donhang.TEN !== null ? item.data_relative_Donhang.TEN : ''}</td>
+                                    <td data-label="Name">{item.data_relative_Donhang.SDT}</td>
+                                    <td data-label="Phone-number">
+                                        {item.data_relative_Donhang.DIACHI ? item.data_relative_Donhang.DIACHI + ', ' : ''}
+                                        {item.data_relative_Donhang.PHUONG_XA ? item.data_relative_Donhang.PHUONG_XA + ', ' : ''}
+                                        {item.data_relative_Donhang.QUAN_HUYEN ? item.data_relative_Donhang.QUAN_HUYEN + ', ' : ''}
+                                        {item.data_relative_Donhang.TINH_TP ? item.data_relative_Donhang.TINH_TP : ''}
+                                    </td> 
+                                </tr> 
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="div_thongTinGiaoHang">
+                            <h3 className="thongTinGiaoHang">Thông tin Đơn hàng</h3>   
+                            <table class="table">
+                                <thead>
+                                    <tr>  
+                                        <th scope="col">Mã đơn hàng</th>
+                                        <th scope="col">Ngày đặt hàng</th> 
+                                        <th scope="col">Tiền sản phẩm</th>
+                                        <th scope="col">Phí vận chuyển</th>
+                                        <th scope="col">Tổng tiền hoá đơn</th>
+                                        <th scope="col">Số tiền Voucher giảm</th> 
+        
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                <tr> 
+                                    <td data-label="Order-code">{item.data_relative_Donhang.MADH}</td>
+                                    <td data-label="Name">{item.data_relative_Donhang.NGAYORDER}</td> 
+                                    <td data-label="Phone-number">  {item.data_relative_Donhang.TONGTIEN_SP}   </td>
+                                    <td data-label="Phone-number">  {item.data_relative_Donhang.PHIVANCHUYEN}   </td>
+                                    <td data-label="Phone-number">  {item.data_relative_Donhang.TONGTIENDONHANG}   </td> 
+                                    <td data-label="Phone-number">  {item.data_relative_Donhang.VOUCHERGIAM === 0 ? 0 : item.data_relative_Donhang.MAVOUCHER}   </td>
+                                </tr> 
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        <div className="div_thongTinGiaoHang">
+                            <h3 className="thongTinGiaoHang">Thông tin các sản phẩm</h3> 
+                            <table class="table">
+                                <thead>
+                                    <tr>  
+                                        <th scope="col">Tên sản phẩm</th>
+                                        <th scope="col">Tên màu</th>
+                                        <th scope="col">Size</th>
+                                        <th scope="col">Giá bán</th>
+                                        <th scope="col" >Số lượng</th> 
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    {
+                                        item.data_sanPham_relative_CTDH.map((item, index) =>  
+                                            <tr  className="" key={index}> 
+                                                <td data-label="Order-code">{item.TENSP}</td>
+                                                <td data-label="Name">{item.TENMAU}</td>
+                                                <td data-label="Phone-number"> {item.MASIZE} </td>
+                                                <td data-label="Phone-number">{item.GIABAN}  </td>
+                                                <td data-label="Phone-number">  {item.SOLUONG}   </td>  
+                                            </tr>  
+                                        ) 
+                                    }
+                                </tbody>      
+                            </table>
+                        </div> 
+                        <div className="div_thongTinGiaoHang">
+                            <h3 className="thongTinGiaoHang">Ghi chú</h3> 
+                            <div>{item.data_relative_Donhang.GHICHU}</div>
+                        </div> 
+                    </div>  
+                    )
+                ) 
+            )
+        }
     } 
 
     const handleGetInfoDetail_Many = () => {

@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCheckCircle, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
-import useGlobalVariableContext from "../../../context_global_variable/context_global_variable";
+import useGlobalVariableContext from "../../../context_global_variable/context_global_variable"; 
 
 
 function Payment(){
@@ -35,7 +35,7 @@ function Payment(){
     });
     const [hienThiThanhToan, setHienThiThanhToan] = useState(false);
     // const URL_APIAdsress = 'https://provinces.open-api.vn/api/';
-    const URL_APIAdsress = 'https://vapi.vnappmob.com/api/province';
+    const URL_APIAdsress = 'https://esgoo.net/api-tinhthanh/';
     //lưu thông tin voucher mà người dùng nhập vào để kiểm tra voucher có sử dụng được hay không
     const [inputvouchers, setInputVoucher] = useState('');
 
@@ -112,8 +112,8 @@ function Payment(){
         // else setDiscountVoucher("Voucher không khả dụng");
         let i = 0;
         infoForPayment.infoVoucher.forEach(item => {
-            console.log(item.MAVOUCHER, inputvouchers, 'ksksk')
             if(item.MAVOUCHER === inputvouchers){
+                console.log(item.MAVOUCHER, inputvouchers, 'ksksk inputvouchers')
                 if(item.SOLUONG_CONLAI === 0){
                     setDiscountVoucher("Voucher hết lượt sử dụng");
                     console.log('1')
@@ -174,8 +174,8 @@ function Payment(){
         let ID_Province = 1;
         let ID_District = 1;
         dataAPIAddress.province.forEach(item => {
-            if(item.province_name === e.target.value) {
-                ID_Province = item.code;
+            if(item.name === e.target.value) {
+                ID_Province = item.id;
                 handleGetDistrict(ID_Province);
                 dataAPIAddress.districts.forEach(item => {
                     if(item.district_name === shipInformation.option_quan) {
@@ -244,34 +244,35 @@ function Payment(){
         
     }
     const handleGetProvince = () => {
-        axios.get(URL_APIAdsress)
+        axios.get(`${URL_APIAdsress}/1/0.htm`)
         .then(res => {
-            console.log(res.data.results.map(item => item.province_name), 'nhkjn8');
+            // console.log(res.data.results.map(item => item.province_name), 'nhkjn8');
+            console.log(res.data, 's22dksk');
             setDataAPIAddress({
                 ...dataAPIAddress,
-                province: res.data.results.filter(item => item)
+                province: res.data.data.filter(item => item)
             }) 
-            // setShipInformation({...shipInformation, option_thanhpho: res.data[0].name})
+            setShipInformation({...shipInformation, option_thanhpho: res.data.data[0].name})
         })
     }
     const handleGetDistrict = async (ID_Province) => {
         console.log(ID_Province, 'ạcbnj23')
-        axios.get(`${URL_APIAdsress}district/${(ID_Province)}`)
+        axios.get(`${URL_APIAdsress}/2/${(ID_Province)}.htm`)
         .then(res => {
-            console.log(res.data.results, 'sdksk');
+            // console.log(res.data.results, 'sdksk');
             setDataAPIAddress({
                 ...dataAPIAddress,
-                districts: res.data.results
+                districts: res.data.data.filter(item => item)
             }) 
         })
     }
-    const handleGetCommune = (ID_District) => {
-        axios.get(`${URL_APIAdsress}/ward/${ID_District}`)
+    const handleGetCommune = (ID_District) => { 
+        axios.get(`${URL_APIAdsress}/3/${(ID_District)}.htm`)
         .then(res => {
             console.log(res.data.results, 'kák');
             setDataAPIAddress({
                 ...dataAPIAddress,
-                commune: res.data.results
+                commune: res.data.data.filter(item => item)
             })
             // setShipInformation({...shipInformation, option_quan: res.data.wards[0].name})
 
@@ -300,37 +301,37 @@ function Payment(){
         tongtienSP += item.TONGGIA; 
     }) 
     useEffect(() => {
-        const found = dataAPIAddress.province.find((item, index) => item.province_name === shipInformation.option_thanhpho)
+        const found = dataAPIAddress.province.find((item, index) => item.name === shipInformation.option_thanhpho)
         if(found){
-            handleGetDistrict(found.province_id) 
+            handleGetDistrict(found.id) 
         }
         console.log('đây là district')
         
     }, [shipInformation.option_thanhpho])
     useEffect(() => {
-        const found = dataAPIAddress.districts.find((item, index) => item.district_name === shipInformation.option_quan) 
+        const found = dataAPIAddress.districts.find((item, index) => item.name === shipInformation.option_quan) 
         if(found){
-            handleGetCommune(found.district_id) 
+            handleGetCommune(found.id) 
         }
     }, [shipInformation.option_quan])
     
     const renderProvince = dataAPIAddress.province.map((item, index) =>  
         <option 
-            value={item.province_name} 
+            value={item.name} 
             key={index}  
-        >{item.province_name}</option>  
+        >{item.name}</option>  
     )
     const renderDistrict = dataAPIAddress.districts.map((item, index) => 
         <option 
-            value={item.district_name} 
+            value={item.name} 
             key={index}  
-        >{item.district_name}</option> 
+        >{item.name}</option> 
     )
     const renderCommune = dataAPIAddress.commune.map((item, index) => 
         <option 
-            value={item.ward_name} 
+            value={item.name} 
             key={index}  
-        >{item.ward_name}</option> 
+        >{item.name}</option> 
     )
     //in ra thông tin sản phẩm đã được chọn để thanh toán từ giỏ hàng
     const renderInfoProductOrders = infoForPayment.infoProduct.map((item, index) => {  
@@ -423,13 +424,13 @@ function Payment(){
                 return formattedDate;
             };
     
-            //thông tin cần lưu trữ trong bảng đơn hàng
+            //thông tin cần lưu trữ trong bảng đơn hàng 
             const infoForOrder = {
                 matk: localStorage.getItem('auth_matk'),
                 ngayorder: getCurrentDate(),
                 tongtien_SP: tongtienSP,
-                vouchergiam: (phivanchuyen === phivanchuyen_default || phivanchuyen === phivanchuyen_hcm) ? (typeof(discountVoucher) !== 'string'  ? tongtienSP * discountVoucher : 0 ) : phivanchuyen__truockhiapvoucher - phivanchuyen,
-                tongtiendonhang: (phivanchuyen === phivanchuyen_default || phivanchuyen === phivanchuyen_hcm) ? (tongtienSP - tongtienSP * discountVoucher + phivanchuyen) : tongtienSP + phivanchuyen,
+                vouchergiam: (phivanchuyen === phivanchuyen_default || phivanchuyen === phivanchuyen_hcm) ? (typeof(discountVoucher) !== 'string' ? tongtienSP * discountVoucher : 0 ) : phivanchuyen__truockhiapvoucher - phivanchuyen,
+                tongtiendonhang: (phivanchuyen === phivanchuyen_default || phivanchuyen === phivanchuyen_hcm) && typeof(discountVoucher) !== 'string' ? (tongtienSP - tongtienSP * discountVoucher + phivanchuyen) : tongtienSP + phivanchuyen,
                 phivanchuyen: phivanchuyen,
                 hinhthucthanhtoan: phuongThucThanhToan,
                 trangthaithanhtoan: 'Chưa thanh toán',
@@ -438,7 +439,7 @@ function Payment(){
                 mattgh: mattghOldAddress,
                 ghichu: '',
             }
-        console.log(infoForOrder, '09010102')
+        console.log(infoForOrder, '09010102', phivanchuyen === phivanchuyen_default, phivanchuyen === phivanchuyen_hcm, (tongtienSP), tongtienSP, discountVoucher  , phivanchuyen )
             
             //bởi vì infoProduct là mảng nên cần chuyển đổi sang stringify để thêm vào đối tượng allDataForSaveInfoPayment
             const infoProductJSON = JSON.stringify(infoForPayment.infoProduct); 

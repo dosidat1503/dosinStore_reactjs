@@ -42,24 +42,26 @@ function InfoProduct(){
         console.log("thay đổi id")
     }, [window.location.search]); // Lắng nghe sự thay đổi của đường dẫn URL
 
+    
+    //khi click ở ngoài popup thì pop sẽ ẩn đi
+    const handleClickOutPopUpCart = (event) => {
+        if(!buttonAddToCartRef.current.contains(event.target)){
+            setStatusPressAddToCart(false); 
+        }
+    }
+    //khi scroll thì sẽ ẩn popup
+    const handleScroll = () => { 
+        const scrollPosition = window.scrollY; 
+
+        if (scrollPosition > 100) {
+            setStatusPressAddToCart(false); 
+        }  
+    }
+
     useEffect(() => { 
         getInfo();
         console.log("load lại thông tin");
         getInfoReviewProduct();
-        //khi click ở ngoài popup thì pop sẽ ẩn đi
-        const handleClickOutPopUpCart = (event) => {
-            if(!buttonAddToCartRef.current.contains(event.target)){
-                setStatusPressAddToCart(false); 
-            }
-        }
-        //khi scroll thì sẽ ẩn popup
-        const handleScroll = () => { 
-            const scrollPosition = window.scrollY; 
-
-            if (scrollPosition > 100) {
-                setStatusPressAddToCart(false); 
-            }  
-        }
             
         window.addEventListener('scroll', handleScroll);
         document.addEventListener("click", handleClickOutPopUpCart);

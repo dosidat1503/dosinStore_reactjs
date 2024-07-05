@@ -41,7 +41,7 @@ function Cart() {
             (!isCheckedAll ) ? item.SELECTED = 1 : item.SELECTED = 0;
         }) 
         setIsCheckedAll(!isCheckedAll);
-
+        
         let tinhtongtien = 0;
         itemCarts.map(item => (item.SELECTED === 1 ) ? tinhtongtien = tinhtongtien + item.TONGGIA : tinhtongtien)
         setTongTienAllItem(tinhtongtien);
