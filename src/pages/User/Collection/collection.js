@@ -64,7 +64,7 @@ function Collection(){
             document.title = 'DosiIn | Tìm kiếm sản phẩm';
             break;
         }
-      }, [state_mapl_sp]);
+    }, [state_mapl_sp]);
 
     const [orderStatus, setOrderStatus] = useState({
         collection:{
@@ -161,8 +161,7 @@ function Collection(){
         .catch(err => {
             console.log( err)
         })
-    } 
- 
+    }  
 
     const getInfoCollection =  (openingPage, ma_category2, filter2) => {     
 
