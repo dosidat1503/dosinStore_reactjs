@@ -1,0 +1,34 @@
+.row1 {
+  vertical-align: middle;
+}
+
+.boxRow1Column1 {
+  display: flex;
+}
+
+.row1Column1Item {
+  margin-right: 20px;
+}
+
+.imgRow1 {
+  height: 160px;
+  width: auto;
+  border-radius: 0.3rem;
+}
+
+.boxRow1 {
+  height: 100%;
+  text-align: center;
+}
+
+.inputNumber {
+  width: 60px;
+  text-align: center;
+}
+
+.btnDeleteCart {
+  border: 2px solid rgb(208, 208, 208);
+  background-color: rgb(243, 243, 243);
+  border-radius: 0.8rem;
+  padding: 0 0.3rem;
+}

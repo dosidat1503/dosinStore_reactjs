@@ -1,0 +1,108 @@
+// review.module.scss
+
+.review {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.reviewHeading {
+  letter-spacing: 1px;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.reviewContainer {
+  max-height: 600px;
+  overflow-y: auto; // Bật thanh cuộn theo chiều dọc
+  border: 1px solid #ddd; // Tùy chọn: Thêm đường viền để trang trí
+  padding: 2rem 0;
+  width: 80%;
+  border-radius: 0.3rem;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.reviewBoxContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.reviewBox {
+  height: 140px;
+  width: 80%;
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.boxTop {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profileImage {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-right: 10px;
+
+  img {
+    border-radius: 50%;
+    width: 4rem;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.user {
+  text-align: left;
+}
+
+.userName {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+
+  strong {
+    color: #3d3d3d;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    width: 12rem;
+  }
+
+  span {
+    color: #979797;
+    font-size: 0.8rem;
+  }
+}
+
+.clientsComment {
+  font-size: 1.3rem;
+  color: #4b4b4b;
+}
+
+.starRate {
+  color: #f3b335;
+  width: 3%;
+  height: 3%;
+}

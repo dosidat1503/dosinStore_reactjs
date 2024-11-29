@@ -1,0 +1,69 @@
+.nameRow {
+  margin-top: 20px;
+}
+
+.roundCornerInput {
+  border: 0px;
+  border-radius: 0.4em;
+  background-color: #f2f2f2;
+}
+
+.formatError {
+  color: red;
+}
+
+.notifySaveInfoAccount {
+  margin-top: 0.2em;
+}
+
+.successSave {
+  color: green;
+  font-weight: 450;
+}
+
+.lastButton {
+  margin-top: 2em;
+  /* margin-left: 17.15em; */
+  width: 150px;
+  background-color: orange;
+  color: #fff;
+  height: 40px;
+  border-radius: 7px;
+  border: 1px solid orange;
+}
+.dCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.donutAccountInfo {
+  width: 2rem;
+  height: 2rem;
+  margin-top: 2rem;
+  /* margin-left: 23rem; */
+  border-radius: 50%;
+  border: 0.3rem solid white;
+  border-top-color: #979fd0;
+  animation: 1.5s spin infinite linear;
+
+  &.multiAccountInfo {
+    border-bottom-color: #979fd0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.passwordChangeButton {
+  margin-top: 0.8em;
+  /* margin-left: 8em; */
+  width: 150px;
+  background-color: orange;
+  color: #fff;
+  height: 40px;
+  border-radius: 7px;
+  border: 1px solid orange;
+}

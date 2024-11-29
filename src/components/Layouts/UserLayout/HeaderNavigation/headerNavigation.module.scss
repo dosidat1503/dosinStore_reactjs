@@ -1,0 +1,60 @@
+:root {
+  --value_radius__header_search: 15px;
+  --value_radius__product_item: 4px;
+  --color_search_bg: #ededed;
+  --color_search_border_div_css: #cccccc;
+}
+.header_navigation__ul {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+}
+.headerNavigation {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgb(227, 227, 227);
+  padding: 20px 0px;
+}
+.header_navigation__ul {
+  padding: 0px;
+  margin: 0px;
+}
+.header_navigation__popup {
+  display: none;
+  width: 100px;
+  height: 50px;
+  z-index: 2;
+  top: -10;
+  left: -30px;
+  background-color: #fff;
+  border: 1px solid #929292;
+  border-radius: 5px;
+}
+.textContainer:hover .header_navigation__popup {
+  display: block;
+  position: absolute;
+}
+.header_navigation__popup > li > button {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: 550;
+}
+.header_navigation__popup > li > button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.text {
+  padding: 0px 15px;
+  font-weight: 550;
+}
+.text:hover {
+  color: orange;
+}
+.textContainer {
+  position: relative;
+}

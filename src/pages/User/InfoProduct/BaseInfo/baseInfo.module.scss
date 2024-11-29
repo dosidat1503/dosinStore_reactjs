@@ -1,0 +1,41 @@
+.importantInfo {
+  padding: 16px;
+  border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+.priceContainer {
+  padding-bottom: 12px;
+}
+
+.sellPrice {
+  font-weight: bold;
+  font-size: 1.7rem;
+  color: red;
+}
+
+.originPrice {
+  text-decoration: line-through;
+  color: #7d7d7d;
+}
+
+.space {
+  margin: 0 0.2rem;
+}
+
+.rateContainer {
+  align-items: center;
+}
+
+.notHasRate {
+  margin-left: 0.3rem;
+}
+
+.solidStar {
+  color: #f3b335;
+  width: 4%;
+  height: 4%;
+}
+
+.regularStar {
+  color: #f3b335;
+}

@@ -1,0 +1,30 @@
+.container {
+  background-color: #ffffff;
+  border-radius: 0.3rem;
+  padding: 3rem 0.2rem;
+  margin-top: 4rem;
+}
+
+.customPrevArrow,
+.customNextArrow {
+  position: relative;
+  width: 30px;
+}
+
+.customPrevArrow {
+  float: left;
+  left: -10px;
+  top: 150px;
+}
+
+.customNextArrow {
+  float: right;
+  right: -10px;
+  bottom: 210px;
+}
+
+.customPrevArrow:hover,
+.customNextArrow:hover {
+  fill: #333;
+  cursor: pointer;
+}

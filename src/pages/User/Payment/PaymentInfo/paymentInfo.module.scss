@@ -1,0 +1,45 @@
+.voucherContainer {
+  margin-top: 15px;
+}
+
+.verticalCenter {
+  display: flex;
+  align-items: center;
+}
+
+.applyVoucherButton {
+  font-size: large;
+  font-weight: bold;
+  color: white;
+  background-color: #000;
+  border-style: none;
+  border-radius: 5px;
+  padding: 0 8px;
+}
+
+.iconApplyVoucherSuccess {
+  margin-left: 1rem;
+  color: green;
+}
+
+.discountPriceText {
+  color: red;
+}
+
+.selectContainer {
+  width: 90% !important;
+}
+
+.confirmButton {
+  font-size: large;
+  font-weight: bold;
+  color: white;
+  background-color: #000;
+  border-style: none;
+  border-radius: 5px;
+  padding: 15px 30px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 80%);
+  }
+}

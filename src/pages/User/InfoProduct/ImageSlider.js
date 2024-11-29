@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './infoProduct2.css';
+import "./infoProduct.css";
 
 const slideStyles = {
   paddingLeft: "20px",
@@ -8,7 +8,6 @@ const slideStyles = {
   borderRadius: "10px",
   backgroundSize: "cover",
   backgroundPosition: "center",
-
 };
 const containerStyles = {
   width: "530px",
@@ -26,7 +25,7 @@ const rightArrowStyles = {
   cursor: "pointer",
   border: "1px solid #DCDCDC",
   borderRadius: "50%",
-  padding: "1px 12px"
+  padding: "1px 12px",
 };
 
 const leftArrowStyles = {
@@ -40,11 +39,10 @@ const leftArrowStyles = {
   cursor: "pointer",
   border: "1px solid #DCDCDC",
   borderRadius: "50%",
-  padding: "1px 12px"
+  padding: "1px 12px",
 };
 
 const sliderStyles = {
-
   position: "relative",
   height: "100%",
   justifyContent: "center",
@@ -53,17 +51,15 @@ const sliderStyles = {
 const dotsContainerStyles = {
   marginLeft: "150px",
   display: "flex",
-
 };
 
 const dotStyle = {
-
   margin: "0 3px",
   cursor: "pointer",
   fontSize: "20px",
 };
 
-const ImageSlider = ({ slides }, {renderReview}) => {
+const ImageSlider = ({ slides }, { renderReview }) => {
   const [slide, setSlide] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const goToPrevious = () => {
@@ -81,34 +77,41 @@ const ImageSlider = ({ slides }, {renderReview}) => {
   };
   const slideStylesWidthBackground = {
     ...slideStyles,
-    backgroundImage: `url(${slides[currentIndex].imgURL})`,
+    backgroundImage: `url(${slides[currentIndex]?.imgURL})`,
   };
 
   return (
- 
-      <div className="product_image">
-        <div class="product_image__list_mini_image" id="style-7">
-          {
-            slides.map((slide, slideIndex) => (
-            <div class="product_image__list_mini_image__item" >
-              <img src={slide.imgURL} alt="" class="product_image__list_mini_image__item__img" onClick={() => goToSlide(slideIndex)}/>
+    <div className="product_image">
+      <div class="product_image__list_mini_image" id="style-7">
+        {slides &&
+          slides.map((slide, slideIndex) => (
+            <div class="product_image__list_mini_image__item">
+              <img
+                src={slide.imgURL}
+                alt=""
+                class="product_image__list_mini_image__item__img"
+                onClick={() => goToSlide(slideIndex)}
+              />
             </div>
-            ))
-          }
-        </div>
-        <div class="product_image__main_image" style={containerStyles}>
-          <div style={sliderStyles} >
-            <div>
-              <div onClick={goToPrevious} style={leftArrowStyles}>
-                ❰
-              </div>
-              <div onClick={goToNext} style={rightArrowStyles}>
-                ❱
-              </div>
+          ))}
+      </div>
+      <div class="product_image__main_image" style={containerStyles}>
+        <div style={sliderStyles}>
+          <div>
+            <div onClick={goToPrevious} style={leftArrowStyles}>
+              ❰
             </div>
-            <div style={slideStylesWidthBackground} onClick={() => setSlide(slides[currentIndex])}></div>
-            <div style={dotsContainerStyles}>
-              {slides.map((slide, slideIndex) => (
+            <div onClick={goToNext} style={rightArrowStyles}>
+              ❱
+            </div>
+          </div>
+          <div
+            style={slideStylesWidthBackground}
+            onClick={() => setSlide(slides[currentIndex])}
+          ></div>
+          <div style={dotsContainerStyles}>
+            {slides &&
+              slides.map((slide, slideIndex) => (
                 <div
                   style={dotStyle}
                   key={slideIndex}
@@ -117,15 +120,17 @@ const ImageSlider = ({ slides }, {renderReview}) => {
                   ●
                 </div>
               ))}
-            </div>
-            <div className="popup-media" style={{ display: slide ? 'block' : 'none' }}>
-              <span onClick={() => setSlide(null)}>&times;</span>
-              <img src={slide?.imgURL} />
-            </div>
           </div>
-        </div> 
-      </div> 
-
+          <div
+            className="popup-media"
+            style={{ display: slide ? "block" : "none" }}
+          >
+            <span onClick={() => setSlide(null)}>&times;</span>
+            <img src={slide?.imgURL} />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

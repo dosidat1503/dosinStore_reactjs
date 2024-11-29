@@ -1,0 +1,16 @@
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.foundProduct {
+  margin-top: 1rem;
+}
+
+.products {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,28 @@
+.tableHeaderRow {
+  .headerColumn0 {
+    width: 40px;
+    text-align: center;
+  }
+
+  .headerColumn1 {
+    width: 400px;
+  }
+
+  .headerColumn2,
+  .headerColumn3,
+  .headerColumn4 {
+    width: 140px;
+    text-align: center;
+  }
+
+  .headerColumn5 {
+    width: 40px;
+    text-align: center;
+
+    .btnDeleteCart {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}

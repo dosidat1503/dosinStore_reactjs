@@ -1,0 +1,28 @@
+.headerContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.bodyContainer {
+  margin-top: 20px;
+  font-size: 16px;
+  font-family: sans-serif;
+  text-align: left;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.describe {
+  text-decoration: none;
+  border: none;
+  background-color: #ffffff;
+  outline: none;
+  resize: none; /* Ngăn không cho textarea thay đổi kích thước bằng cách kéo cạnh */
+  overflow: hidden; /* Ẩn thanh cuộn nếu nội dung vượt quá */
+  min-height: 40px; /* Đặt chiều cao tối thiểu */
+  height: auto; /* Cho phép textarea tự điều chỉnh chiều cao dựa trên nội dung */
+  font-size: 1rem; /* Kích thước font */
+  font-weight: bold; /* Độ đậm của font */
+  padding: 1rem;
+  border-radius: 0.4rem;
+  width: 100%;
+}
